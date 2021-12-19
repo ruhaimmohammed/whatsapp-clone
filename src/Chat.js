@@ -5,6 +5,8 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
 import './Chat.css'
+import { useParams } from "react-router-dom";
+import db from './firebase';
 
 function Chat() {
 
@@ -14,6 +16,16 @@ function Chat() {
 
     const [input, setInput] = useState("");
     const [seed, setSeed] = useState('');
+    const { roomId }  = useParams();
+    const [roomName, setRoomName] = useState("");
+
+    useEffect(() => {
+        if(roomId){
+            db.collection('rooms').doc(roomId).onSnapshot(snapshot => (
+                setRoomName(snapshot.data().name)
+            ))
+        }
+    }, [roomId])
 
     useEffect(() => {
         setSeed(Math.floor(
@@ -23,52 +35,52 @@ function Chat() {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        console.log('You typed >>>',input)
+        console.log('You typed >>>', input)
 
         setInput("");
-    } 
+    }
 
 
     return (
-        <div className="chat">
-            <div className="chat__header">
-                <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+            <div className="chat">
+                <div className="chat__header">
+                    <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
-                <div className="chat__headerInfo">
-                    <h3>Room name</h3>
-                    <p>Last seen ....</p>
-                </div>
-
-                <div className="chat__headerRight">
-                    <IconButton>
-                        <SearchOutlined />
-                    </IconButton>
-                    <IconButton>
-                        <AttachFile />
-                    </IconButton>
-                    <IconButton>
-                        <MoreVertIcon />
-                    </IconButton>
-                </div>
-            </div>
-            <div className="chat__body">
-                <p className={`chat__message ${true && 'chat__receiver'}`}>
-                    <span className="chat__name" style={{ color: `rgb(${red},${green},${blue})`}}>Ruhaim</span>
-                    <div className="msg__container">
-                        <span className="chat__msg"> Hey Guys </span>
-                        <span className="chat__timestamp">3:38 PM</span>
+                    <div className="chat__headerInfo">
+                        <h3>{ roomName }</h3>
+                        <p>Last seen ....</p>
                     </div>
-                </p>
+
+                    <div className="chat__headerRight">
+                        <IconButton>
+                            <SearchOutlined />
+                        </IconButton>
+                        <IconButton>
+                            <AttachFile />
+                        </IconButton>
+                        <IconButton>
+                            <MoreVertIcon />
+                        </IconButton>
+                    </div>
+                </div>
+                <div className="chat__body">
+                    <p className={`chat__message ${true && 'chat__receiver'}`}>
+                        <span className="chat__name" style={{ color: `rgb(${red},${green},${blue})` }}>Ruhaim</span>
+                        <div className="msg__container">
+                            <span className="chat__msg"> Hey Guys </span>
+                            <span className="chat__timestamp">3:38 PM</span>
+                        </div>
+                    </p>
+                </div>
+                <div className="chat__footer">
+                    <InsertEmoticonIcon />
+                    <form>
+                        <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Type a message" />
+                        <button onClick={sendMessage} type="submit">Send a meassage</button>
+                    </form>
+                    <MicIcon />
+                </div>
             </div>
-            <div className="chat__footer">
-                <InsertEmoticonIcon/>
-                <form>
-                    <input value={input} onChange={e => setInput(e.target.value)} type="text" placeholder="Type a message" />
-                    <button onClick={sendMessage} type="submit">Send a meassage</button>
-                </form>
-                <MicIcon/>
-            </div>
-        </div>
     )
 }
 
