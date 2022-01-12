@@ -61,10 +61,10 @@
 }
 
 .whatsapp{
-    font-size: 29px;
+    font-size: 22px;
     color: #128c7e;
-    margin-left: -20%;
-    margin-top: -0.35%;
+    margin-top: 3px;
+    margin-left: 5px;
 }
 
 @media(max-width:700px){
