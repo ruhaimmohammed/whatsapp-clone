@@ -25,6 +25,10 @@
     color: grey;
 }
 
+.sidebarChat__info > p > abbr{
+    text-decoration: none;
+}
+
 .sidebarChat__link{
     text-decoration: none;
 }

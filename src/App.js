@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import './App.css';
 import Sidebar from './Sidebar';
 import Chat from './Chat'
@@ -15,13 +15,20 @@ function App() {
         <Login />
       ) : (
         <div className="app__body">
-          <Router>
-            <Sidebar />
-            <Routes>
-              <Route path="/rooms/:roomId" element={<Chat />} />
-            </Routes>
-          </Router>
-        </div>
+      <Router>
+       { window.innerWidth >= 700 && <Sidebar />}
+        <Routes>
+          
+          {
+            window.innerWidth <= 700 && <Route path="/" element={ <Sidebar />} /> 
+          }
+          {
+            <Route path="/rooms/:roomId" element={<Chat />} />
+}
+          <Route path="/sidebar" element={<Sidebar />} />
+        </Routes>
+      </Router>
+      </div>
       )}
     </div>
   );

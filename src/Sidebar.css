@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     background-color: #f6f6f6;
-    height: 39px;
+    height: 43px;
     padding: 10px;
 }
 
@@ -58,4 +58,29 @@
 }
 .sidebar__chats::-webkit-scrollbar{
     display: none;
+}
+
+.whatsapp{
+    font-size: 29px;
+    color: #128c7e;
+    margin-left: -20%;
+    margin-top: -0.35%;
+}
+
+@media(max-width:700px){
+    .sidebar{
+        flex: 1;
+    }
+    .sidebar__search{
+        padding: 10px;
+    }
+    .sidebar__searchContainer{
+        justify-content: flex-start;
+    }
+    .sidebar__searchContainer > input {
+        width: 75%;
+    }
+    .sidebar__header{
+        padding: 14px 20px;
+    }
 }

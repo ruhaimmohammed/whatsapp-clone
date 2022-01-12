@@ -18,7 +18,7 @@ function Sidebar() {
             (
                setRooms(snapshot.docs.map(doc => 
                 ({
-                    id:doc.id,
+                    id: doc.id,
                     data:doc.data(),
                 })
                 ))
@@ -35,6 +35,7 @@ function Sidebar() {
         <div className="sidebar">
             <div className="sidebar__header">
                 <Avatar src={user?.photoURL} />
+                { window.innerWidth <= 700 && <h3 className='whatsapp'>Whatsapp</h3>}
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutLargeRoundedIcon />
@@ -57,7 +58,7 @@ function Sidebar() {
                 <SidebarChat  addNewChat />
                 {rooms.map(room => (
                     <SidebarChat key={room.id} id={room.id} name={room.data.name} />
-                ))};
+                ))}
 
             </div>
 
