@@ -22,9 +22,8 @@ function App() {
           {
             window.innerWidth <= 700 && <Route path="/" element={ <Sidebar />} /> 
           }
-          {
+
             <Route path="/rooms/:roomId" element={<Chat />} />
-}
           <Route path="/sidebar" element={<Sidebar />} />
         </Routes>
       </Router>

@@ -9,8 +9,8 @@ const firebaseConfig = {
   projectId: "whatsapp-clone-b3433",
   storageBucket: "whatsapp-clone-b3433.appspot.com",
   messagingSenderId: "381363679843",
-  appId: "1:381363679843:web:2a8f3ef6b8e4c6e1987e56",
-  measurementId: "G-8416XWY9CR"
+  appId: "1:381363679843:web:795cf4ac1408d4ee987e56",
+  measurementId: "G-MTGB1RNRKD"
 };
 
   const firebaseApp = firebase.initializeApp(firebaseConfig);
